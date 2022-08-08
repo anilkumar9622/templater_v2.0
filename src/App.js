@@ -5,6 +5,7 @@ import UploadImage1 from './components/uploadimage1'
 import './components/loader/loader.css'
 import { useState, useEffect } from 'react'
 import Editor from './editor/editor'
+import Drawer from './editor/drawer'
 export default function App() {
   const [loader, setLoader] = useState(false)
 
@@ -28,7 +29,7 @@ export default function App() {
   }, [])
 
   const routes = useRoutes([
-    { path: '/', element: <Editor /> }
+    { path: '/', element: <Drawer /> }
   ])
   return (<>
     {routes}

@@ -1,3 +1,4 @@
+import { UploadOutlined } from '@ant-design/icons';
 import React from 'react'
 import { useState } from 'react';
 import './uploadimage.css'
@@ -21,9 +22,11 @@ export default function Uploadimage(props) {
     <>
       <div class="image-upload">
         <label for="file-input">
-          <img className='upload-icon'
-            src="https://img.icons8.com/office/80/000000/upload--v1.png" />
+          {/* <img className='upload-icon'
+            src="https://img.icons8.com/office/80/000000/upload--v1.png" /> */}
+          <div className='upload-icon'>  <UploadOutlined  style={{fontSize:'28px'}}/></div>
         </label>
+
         <input multiple draggable={true} id="file-input" type="file" onChange={handleimgPreview} />
       </div>
     </>

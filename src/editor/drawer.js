@@ -1,3 +1,16 @@
+// import React, { useState } from 'react';
+import 'antd/dist/antd.css';
+import './index.css';
+import {
+  DoubleLeftOutlined,
+  DoubleRightOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  UploadOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+} from '@ant-design/icons';
+import { Layout, Menu } from 'antd';
 import React, { useRef, useState, useEffect } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import '../App.css'
@@ -12,7 +25,16 @@ import Uploadimage1 from '../components/uploadimage1';
 import { Button, Drawer } from 'antd';
 import 'antd/dist/antd.css';
 
-export default function EditorPage() {
+const { Header, Sider, Content } = Layout;
+
+
+
+export default function Drawerl() {
+    const [collapsed, setCollapsed] = useState(false);
+
+    
+
+
   const editorRef = useRef(null);
   const [images, setImages] = useState([])
   const [uploadImage, setUploadImage] = useState([]);
@@ -73,60 +95,65 @@ export default function EditorPage() {
     });
   };
 // ____________________________________
-const [visible, setVisible] = useState(false);
-
-
-const showDrawer = () => {
-  setVisible(true);
-};
-
-const onClose = () => {
-  setVisible(false);
-};
 
 
 
   return (
-
     <>
-    
-      <div style={{ display: 'flex', margin: '3px', alignItems:'end', justifyContent:'end' }}>
-      <Button type="primary" onClick={showDrawer}>
-          Open
-        </Button>
-        <Drawer 
-          // title="Basic Drawer"
-          placement='left'
-          closable={false}
-          onClose={onClose}
-          visible={visible}
-      
-          >
-        <div style={{ width: '35%', display: 'flex', flexDirection: 'column', margin: '5px' }}>
-          <button className="gradient-button gradient-button-4" style={{ width: "auto" }} onClick={log}>Save Template</button>
+   <Layout>
+      <Sider trigger={null} collapsible collapsed={collapsed} collapsedWidth='0' width='300'
+      style={{width:'', background:'white', }}>
+        {/* <div className="logo" >bbjnjks
+        {/* <Menu
+          theme="light"
+          mode="inline"
+          defaultSelectedKeys={['1']}
+         
+        /> */}
+        {/* </div >  */}
+        <div style={{position:'absolute' ,width: '95%', display: 'flex', flexDirection: 'column', margin: '5px' }}>
+        
+          {/* <button className="gradient-button gradient-button-4" style={{ width: "auto" }} onClick={log}>Save Template</button> */}
           <EmailChips chipsvalue={chipsvalue} setChipsValue={setChipsValue} handleDelete={handleDelete} handleKeyDown={handleKeyDown} handleChange={handleChange} />
 
           <button
-            className="gradient-button gradient-button-4"
-            onClick={() => { sendLetter(value, chipsvalue.chips) }} style={{ width: "auto", padding: '5px' }}
+            className="gradient-button gradient-button"
+            onClick={() => { sendLetter(value, chipsvalue.chips) }} style={{ width: "auto", padding: '5px', color:'GrayText' }}
 
           >Send</button>
-          <div style={{ width: "100%", display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap', height: '480px', borderRadius: '10px', overflowY: 'auto', position: 'relative', backgroundColor: '#E5E5E5', gap: '3px' }} >
+          
+          <div style={{position:'', width: "100%", display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap', height: '480px', borderRadius: '10px', overflowY: 'auto', position: 'relative', backgroundColor: '#E5E5E5', gap: '3px' }} >
             {images.map((image, index) => (
               <div key={index} style={{ borderRadius: '10px', position: 'relative', height: '150px', width: '100px', margin: '3px' }} >
                 <img class="imgHover" src={image.image} alt="" style={{ height: '100%', width: '100%', objectFit: 'strech', borderRadius: '10px' }} />
                 <Copyurl image={image.image} />
+
               </div>
             ))}
+            
           </div>
+          
         </div>
-        </Drawer>
+       
+      </Sider>
+     
+        <Content
+          className="site-layout-background"
+          style={{
+            margin: '0px 0px',
+            padding: 0,
+            minHeight: 280,
+          }}
+        >
+           <div style={{position:'', display: '', margin: '0px', height:'600px' ,width:'100%' }}>
+    
+        
         <Editor
           apiKey='cm0s5oticy0ahny0l3o0pdpyionk5z8jvftdcnjmp4p0py4y'
           onInit={(evt, editor) => editorRef.current = editor}
           initialValue={value}
           onChange={(e) => setValue(e.target.value)}
-          style={{ innerHeight: '100%', display:'flex', justifyContent:'' }}
+          style={{ innerHeight: '100px', display:'', justifyContent:'' }}
           init={{
             selector: '.texteditor',
             plugins: "advlist lists table paste textcolor fullscreen colorpicker tabfocus link preview autolink image charmap image code",
@@ -141,11 +168,19 @@ const onClose = () => {
             relative_urls: false,
             remove_script_host: false,
             language: 'en',
+            
           }}
         />
+        <div style={{position:'relative', margin:'-340px -20px ', zIndex:'9000'}}> {React.createElement(collapsed ? DoubleRightOutlined  : DoubleLeftOutlined, {
+            className: 'trigger',
+            onClick: () => setCollapsed(!collapsed),
+          })}
       </div>
-     
-      <Uploadimage1 setUploadImage={setUploadImage} uploadImage={uploadImage} />
+      </div>
+        </Content>
+      </Layout>
+    {/* </Layout> */}
+    <Uploadimage1 setUploadImage={setUploadImage} uploadImage={uploadImage} />
     </>
-  );
+  )
 }
