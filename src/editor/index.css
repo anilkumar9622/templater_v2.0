@@ -21,8 +21,32 @@
   }
 
    .tox-tinymce{
-    height: 600px !important;
+    height: 100vh !important;
   }
   .tox tox-silver-sink tox-tinymce-aux{
       height: 1px !important;
+  }
+/*------------------------ selceted tabs -----------------------*/
+
+  .ant-tabs-tab{
+   width: 10rem !important;
+    background-color: #f4f4f4;
+    justify-content: center;
+  }
+
+  .ant-tabs-nav-wrap{
+    width: 18.5rem !important;
+  }
+
+  .ant-tabs-nav-list{
+    width: 18.5rem !important;
+  }
+  .ant-tabs-nav-operations{
+    display: none !important;
+  }
+  .ant-tabs-nav{
+    border: 2px solid black;
+  }
+  .ant-tabs-tab-active{
+    border: 2px solid white !important;
   }
